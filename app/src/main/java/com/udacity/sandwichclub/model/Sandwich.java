@@ -1,6 +1,12 @@
 package com.udacity.sandwichclub.model;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.List;
+
+import static com.udacity.sandwichclub.utils.JsonUtils.parseStringJSONArray;
 
 public class Sandwich {
 
@@ -24,6 +30,37 @@ public class Sandwich {
         this.description = description;
         this.image = image;
         this.ingredients = ingredients;
+    }
+
+    public Sandwich(JSONObject json) {
+        try {
+            if (json.has("name")) {
+                JSONObject nameObject = json.getJSONObject("name");
+                if ( nameObject.has("mainName") ) {
+                    this.mainName = nameObject.getString("mainName");
+                }
+                if ( nameObject.has("alsoKnownAs")) {
+                    JSONArray akaArray = nameObject.getJSONArray("alsoKnownAs");
+                    this.alsoKnownAs = parseStringJSONArray(akaArray);
+                }
+                if ( json.has("placeOfOrigin") ) {
+                    this.placeOfOrigin = json.getString("placeOfOrigin");
+                }
+                if ( json.has("description") ) {
+                    this.description = json.getString("description");
+                }
+                if ( json.has("image") ) {
+                    this.image = json.getString("image");
+                }
+                if ( json.has("ingredients") ) {
+                    JSONArray ingredientsArray = json.getJSONArray("ingredients");
+                    this.ingredients = parseStringJSONArray(ingredientsArray);
+                }
+
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getMainName() {
