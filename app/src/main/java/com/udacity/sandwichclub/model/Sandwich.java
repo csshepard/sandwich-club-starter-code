@@ -34,30 +34,30 @@ public class Sandwich {
 
     public Sandwich(JSONObject json) {
         try {
-            if (json.has("name")) {
+            if ( json.has("name") ) {
                 JSONObject nameObject = json.getJSONObject("name");
                 if ( nameObject.has("mainName") ) {
                     this.mainName = nameObject.getString("mainName");
                 }
-                if ( nameObject.has("alsoKnownAs")) {
+                if ( nameObject.has("alsoKnownAs") ) {
                     JSONArray akaArray = nameObject.getJSONArray("alsoKnownAs");
                     this.alsoKnownAs = parseStringJSONArray(akaArray);
                 }
-                if ( json.has("placeOfOrigin") ) {
-                    this.placeOfOrigin = json.getString("placeOfOrigin");
-                }
-                if ( json.has("description") ) {
-                    this.description = json.getString("description");
-                }
-                if ( json.has("image") ) {
-                    this.image = json.getString("image");
-                }
-                if ( json.has("ingredients") ) {
-                    JSONArray ingredientsArray = json.getJSONArray("ingredients");
-                    this.ingredients = parseStringJSONArray(ingredientsArray);
-                }
-
             }
+            if ( json.has("placeOfOrigin") ) {
+                this.placeOfOrigin = json.getString("placeOfOrigin");
+            }
+            if ( json.has("description") ) {
+                this.description = json.getString("description");
+            }
+            if ( json.has("image") ) {
+                this.image = json.getString("image");
+            }
+            if ( json.has("ingredients") ) {
+                JSONArray ingredientsArray = json.getJSONArray("ingredients");
+                this.ingredients = parseStringJSONArray(ingredientsArray);
+            }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
