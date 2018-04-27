@@ -3,26 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="horizontal"
     android:weightSum="100"
-    android:orientation="vertical"
     tools:context="com.udacity.sandwichclub.DetailActivity">
 
     <ImageView
         android:id="@+id/image_iv"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="30"
-        android:adjustViewBounds="true"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="40"
         android:contentDescription="@string/sandwich_picture_content_description"
         android:scaleType="centerCrop" />
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="70"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="60"
         android:layout_marginTop="8dp" >
         <include
             android:id="@+id/sandwiches_detail"
-            layout="@layout/sandwich_info" />
+            layout="@layout/sandwich_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"  />
     </ScrollView>
+
 </LinearLayout>
